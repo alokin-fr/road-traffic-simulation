@@ -8,6 +8,12 @@ res=(800,600)
 window = pygame.display.set_mode(res)   #création de la fenêtre
 
 
+
+txt_font = pygame.font.SysFont("arial",20)
+txt_surface = txt_font.render("Frames: 0",False,[255,255,255])
+window.blit(txt_surface,[5,5])
+
+
 cars = []                               #liste des voitures
 
 
@@ -21,10 +27,11 @@ def move_rect(recta,dx,dy):
     recta.x +=dx
     recta.y +=dy
     pygame.draw.rect(window,(0,0,255),recta)
-
+print(pygame.font.get_fonts())
 
 
 launched=True
+loops,latency,tf=0,0,0
 while launched:                         #boucle de lancement
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -44,4 +51,17 @@ while launched:                         #boucle de lancement
         else:
             cars.pop(i)
             break
+
+
+    txt_surface = txt_font.render(f"Latency: {int(round(latency,3)*1e3)} ms",False,[0,0,0])         #debug
+    window.blit(txt_surface,[5,25])
+    latency=time.monotonic()-tf
+    txt_surface = txt_font.render(f"Latency: {int(round(latency,3)*1e3)} ms",False,[255,255,255])
+    window.blit(txt_surface,[5,25])
+    txt_surface = txt_font.render(f"Frames: {loops}",False,[0,0,0])
+    window.blit(txt_surface,[5,5])
+    loops+=1
+    txt_surface = txt_font.render(f"Frames: {loops}",False,[255,255,255])
+    window.blit(txt_surface,[5,5])
     pygame.display.flip()
+    tf=time.monotonic()
