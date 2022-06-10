@@ -1,7 +1,7 @@
 import pygame
 import time
 from random import randint
-from car_generator import Car
+from car_generator import *
 
 
 pygame.init()
@@ -9,16 +9,23 @@ res=(1280,720)
 window = pygame.display.set_mode(res)   #création de la fenêtre
 
 
+
 txt_font = pygame.font.SysFont("arial",20)
 txt_surface = txt_font.render("Frames: 0",False,[255,255,255])
 window.blit(txt_surface,[5,5])
 
 
+
 cars = []                               #liste des voitures
+roads=[Road([0,300],[500,300])]
+
 
 
 launched=True
 frames,latency,tf=0,0,0
+
+
+
 while launched:                         #boucle de lancement
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -26,7 +33,7 @@ while launched:                         #boucle de lancement
 
 
     if randint(0,200)==0:                 #génération aléatoire de voitures
-        cars.append(Car([20,300],1))
+        cars.append(Vehicle([20,300],1))
         pygame.draw.rect(window,(0,0,255),cars[-1].rect)
 
 
