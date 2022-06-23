@@ -19,13 +19,13 @@ class Vehicle:
             self.rect=pygame.Rect(self.pos[0]-6, self.pos[1], 11,11)
 
 
-    def in_window(self):                    #vérifie si la voiture est dans la fenêtre
+    def in_window(self):
         from simulation import res
         x,y=self.pos[0],self.pos[1]
         return -20<x<res[0]+20 and -20<y<res[1]+20
 
 
-    def move(self):                         #bah ça bouge la caisse quoi
+    def move(self):
         from simulation import window
         pygame.draw.rect(window,(0,0,0),self.rect)  #on efface la voiture de sa position initiale
 
