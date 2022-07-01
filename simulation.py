@@ -47,7 +47,7 @@ while loop:                             #boucle de lancement
     for event in pygame.event.get():
         #pour quitter la simulation lorsqu'on clique sur la croix
         if event.type == pygame.QUIT:
-            filename=f"data{frames}.json"
+            filename=f"data{frames}.json"   #2 fichiers s'enregistrent dû à un bug, on les distingue alors par leur nombre de frames
             with open(filename,"w") as file:
                 json.dump(data,file)
             #on enregistre les résultats lorsque l'on quitte
