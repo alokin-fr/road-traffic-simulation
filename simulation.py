@@ -25,7 +25,7 @@ roads[0].set_next_road(roads[1])
 roads[1].set_next_road(roads[2])
 roads[2].set_next_road(roads[3])
 roads[3].set_next_road(roads[0])
-#connextion des routes entre elles
+#connexion des routes entre elles
 
 def distance(a:tuple,b:tuple):
     "renvoie la distance entre deux points"
